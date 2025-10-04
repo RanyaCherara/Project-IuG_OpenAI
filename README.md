@@ -19,6 +19,12 @@ Features:
 - Reproducible workflow: deterministic preprocessing + clear configuration via .env.
 ___
 
+Input and Output: 
+- Inputs: a folder or ZIP with photos; a description_list Excel with basic info and inventory codes, and our Prompt 
+- Output: a new Excel with one neutral, visibility-based description per object plus key metadata columns.
+
+___
+
 How it works (System Overview): 
 1. Selection & Assignment
 A script filters the images folder (or ZIP) to include only objects assigned to our group (by inventory number), creating a consistent dataset for experiments.
