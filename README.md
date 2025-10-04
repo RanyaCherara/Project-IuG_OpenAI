@@ -40,8 +40,9 @@ System Requirements
 - Network: outbound HTTPS access to OpenAI API
 ___
 Configuration
-Create a .env file in the repository root:
-OPENAI_API_KEY=sk-********************************
-EXCEL_METADATA_PATH=./path/to/metadata.xlsx
+Create a .env file in the repository root: 
+- OPENAI_API_KEY=sk-********************************
+- EXCEL_METADATA_PATH=./path/to/metadata.xlsx
+  
 - OPENAI_API_KEY: your OpenAI key
 - EXCEL_METADATA_PATH: path to the Excel metadata provided by the museum
