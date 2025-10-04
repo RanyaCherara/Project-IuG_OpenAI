@@ -9,6 +9,7 @@ ___
 
 Project Goal
 The goal of the project is to investigate whether AI can support and accelerate the documentation of museum collections. By automatically generating metadata and short textual descriptions that follow cataloging standards, the system explores the feasibility of reducing the high costs and time demands of manual annotation. The prototype provides insight into how AI might be integrated into curatorial workflows, helping museums manage large and heterogeneous collections more efficiently and making cultural heritage more accessible to both researchers and the public.
+___
 
 Features:
 - Image–metadata fusion: links object photos to their Excel row via inventory numbers / filenames.
@@ -16,6 +17,7 @@ Features:
 - Structured output: standardized columns in an Excel file, easy to review and edit.
 - Fast & cost-aware: uses GPT-4.0 Mini for rapid turnaround at lower cost.
 - Reproducible workflow: deterministic preprocessing + clear configuration via .env.
+___
 
 How it works (System Overview): 
 1. Selection & Assignment
@@ -27,23 +29,16 @@ For each object, the system sends (a) the preprocessed image and (b) the corresp
 
 3. Formatting & Evaluation
 The script parses the model’s response and writes it into a new Excel file (descriptions_with_excel.xlsx). We perform spot checks against existing metadata to assess quality and feasibility.
+___
 
 Why the prompt matters: The prompt is the decisive interface to the model. Clear field definitions, explicit “no guessing” rules, and a concise style guide substantially improve accuracy, reduce hallucinations, and stabilize phrasing across the dataset.
-
-Repository Structure:
-.
-├─ Prototyp_Mit_KEY.py        # main script: preprocessing, prompting, generation, export
-├─ .env                       # API key + path to metadata (not committed)
-├─ requirements.txt           # Python dependencies
-├─ README.md                  # this file
-└─ (optional) sample_data/    # small example images + toy Excel (if licensing permits)
-
+___
 System Requirements
 - Python: ≥ 3.12
 - External libraries: requests, openpyxl, Pillow (PIL), python-dotenv
 - Built-in modules: zipfile, tempfile, os, re
 - Network: outbound HTTPS access to OpenAI API
-
+___
 Configuration
 Create a .env file in the repository root:
 OPENAI_API_KEY=sk-********************************
