@@ -4,6 +4,7 @@ Project-IuG_OpenAI
 AI in Museums (Technisches Museum Berlin)
 This repository contains a prototype that generates concise, catalogue-ready descriptions of museum objects by combining an Excel metadata file with a separate folder of images. The system preprocesses images, assembles a structured prompt, sends image + metadata to OpenAI GPT-4.0 Mini, and writes the results back to a new Excel file for curatorial review.
 AI in Museums - Prototype
+---
 
 Project Goal
 The goal of the project is to investigate whether AI can support and accelerate the documentation of museum collections. By automatically generating metadata and short textual descriptions that follow cataloging standards, the system explores the feasibility of reducing the high costs and time demands of manual annotation. The prototype provides insight into how AI might be integrated into curatorial workflows, helping museums manage large and heterogeneous collections more efficiently and making cultural heritage more accessible to both researchers and the public.
