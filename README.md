@@ -1,22 +1,23 @@
 # Project-IuG_OpenAI
 Project-IuG_OpenAI
 
-
-/Users/ranyacherara/Desktop/Gruppe1Bilder
-
+AI in Museums (Technisches Museum Berlin)
+This repository contains a prototype that generates concise, catalogue-ready descriptions of museum objects by combining an Excel metadata file with a separate folder of images. The system preprocesses images, assembles a structured prompt, sends image + metadata to OpenAI GPT-4.0 Mini, and writes the results back to a new Excel file for curatorial review.
 AI in Museums - Prototype
 
-This project is a prototype developed for the Deutsches Technikmuseum Berlin.  
-Its goal is to automatically generate **neutral, factual descriptions** of museum objects based on photos, supported by existing metadata from Excel.
-
 Features:
-- Processes a **folder or ZIP file of object photos**.  
-- Matches photos with museum inventory codes found in the Excel metadata.  
-- Generates **short, objective descriptions** of objects using an AI model.  
-- Writes results into a **new Excel file** (`descriptions_with_excel.xlsx`).  
-- Ensures quality by:
-  - Describing **only what is visible** (shape, color, material, markings).  
-  - Avoiding guesses, history, or interpretation.  
-  - Adding flags if image quality is low or the main object is unclear.  
+- Image–metadata fusion: links object photos to their Excel row via inventory numbers / filenames.
+- Prompted generation: tightly controlled, catalogue-style descriptions (no fluff, no speculation).
+- Structured output: standardized columns in an Excel file, easy to review and edit.
+- Fast & cost-aware: uses GPT-4.0 Mini for rapid turnaround at lower cost.
+- Reproducible workflow: deterministic preprocessing + clear configuration via .env.
 
-Project Structure:
+How it works (System Overview): 
+1. Selection & Assignment
+- A script filters the images folder (or ZIP) to include only objects assigned to our group (by inventory number), creating a consistent dataset for experiments.
+
+2. Preprocessing
+- Images are standardized (format/size; optional brightness/contrast normalization) and encoded (base64) to ensure robust, comparable inputs. Prompted Description Generation
+For each object, the system sends (a) the preprocessed image and (b) the corresponding Excel metadata to GPT-4.0 Mini with strict instructions for a concise, catalogue-compatible description and a fixed response schema.
+Formatting & Evaluation
+The script parses the model’s response and writes it into a new Excel file (descriptions_with_excel.xlsx). We perform spot checks against existing metadata to assess quality and feasibility.
