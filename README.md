@@ -14,10 +14,34 @@ Features:
 
 How it works (System Overview): 
 1. Selection & Assignment
-- A script filters the images folder (or ZIP) to include only objects assigned to our group (by inventory number), creating a consistent dataset for experiments.
+A script filters the images folder (or ZIP) to include only objects assigned to our group (by inventory number), creating a consistent dataset for experiments.
 
 2. Preprocessing
-- Images are standardized (format/size; optional brightness/contrast normalization) and encoded (base64) to ensure robust, comparable inputs. Prompted Description Generation
+Images are standardized (format/size; optional brightness/contrast normalization) and encoded (base64) to ensure robust, comparable inputs. Prompted Description Generation
 For each object, the system sends (a) the preprocessed image and (b) the corresponding Excel metadata to GPT-4.0 Mini with strict instructions for a concise, catalogue-compatible description and a fixed response schema.
-Formatting & Evaluation
+
+3. Formatting & Evaluation
 The script parses the model’s response and writes it into a new Excel file (descriptions_with_excel.xlsx). We perform spot checks against existing metadata to assess quality and feasibility.
+
+Why the prompt matters: The prompt is the decisive interface to the model. Clear field definitions, explicit “no guessing” rules, and a concise style guide substantially improve accuracy, reduce hallucinations, and stabilize phrasing across the dataset.
+
+Repository Structure:
+.
+├─ Prototyp_Mit_KEY.py        # main script: preprocessing, prompting, generation, export
+├─ .env                       # API key + path to metadata (not committed)
+├─ requirements.txt           # Python dependencies
+├─ README.md                  # this file
+└─ (optional) sample_data/    # small example images + toy Excel (if licensing permits)
+
+System Requirements
+- Python: ≥ 3.12
+- External libraries: requests, openpyxl, Pillow (PIL), python-dotenv
+- Built-in modules: zipfile, tempfile, os, re
+- Network: outbound HTTPS access to OpenAI API
+
+Configuration
+Create a .env file in the repository root:
+OPENAI_API_KEY=sk-********************************
+EXCEL_METADATA_PATH=./path/to/metadata.xlsx
+- OPENAI_API_KEY: your OpenAI key
+- EXCEL_METADATA_PATH: path to the Excel metadata provided by the museum
